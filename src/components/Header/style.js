@@ -46,12 +46,16 @@ const SearchBar = styled.input`
   border: 1px solid #c4c4c4;
   border-radius: 5px;
 
-  ::placeholder {
+  &::placeholder {
     font-family: "Poppins";
     font-size: 16px;
     letter-spacing: 0.15px;
     line-height: 24px;
     font-weight: 500;
+  }
+
+  &:focus{
+      outline: none;
   }
 `;
 
