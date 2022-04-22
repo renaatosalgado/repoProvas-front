@@ -20,7 +20,6 @@ import {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [signUpData, setSignUpData] = useState({
-      name: "",
       email: "",
       password: "",
       confirm_password: "",
