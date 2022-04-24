@@ -20,15 +20,8 @@ import useAuth from "../../hooks/useAuth";
 export default function Login() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
-  const { auth, login } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (auth && auth.token) {
-      navigate("/");
-    }
-    //eslint-disable-next-line
-  }, []);
 
   function handleChange(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });

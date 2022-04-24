@@ -54,8 +54,8 @@ const SearchBar = styled.input`
     font-weight: 500;
   }
 
-  &:focus{
-      outline: none;
+  &:focus {
+    outline: none;
   }
 `;
 

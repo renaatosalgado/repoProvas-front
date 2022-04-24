@@ -17,6 +17,8 @@ const Term = styled.div`
   align-items: center;
   justify-content: center;
 
+  margin-bottom: 10px;
+
   //box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
 `;
 
@@ -37,6 +39,8 @@ const TermNumber = styled.p`
 `;
 const Discipline = styled.div`
   width: calc(100% - 25px);
+
+  //display: none;
 `;
 const DisciplineName = styled.p`
   height: 35px;
@@ -50,6 +54,8 @@ const DisciplineName = styled.p`
   justify-content: space-between;
 
   padding: 10px;
+
+  cursor: pointer;
 `;
 const TestsList = styled.div`
   width: calc(100% - 25px);
@@ -58,6 +64,8 @@ const TestsList = styled.div`
   padding-left: 16px;
 
   font-weight: 400;
+
+  //display: none;
 `;
 const Test = styled.div`
   //border: 1px solid green;
