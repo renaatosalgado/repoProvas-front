@@ -8,7 +8,7 @@ import {
 } from "../../components/Form";
 
 import { ThreeDots } from "react-loader-spinner";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import LogoContainer from "../../components/LogoContainer";

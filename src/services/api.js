@@ -35,3 +35,17 @@ export function logout(token) {
 
   return promise;
 }
+
+export function listTerms(token) {
+  const config = createConfig(token);
+  const promise = axios.get(`${BASE_URL}/get/terms`, config);
+
+  return promise;
+}
+
+export function listDisciplines(token, termId) {
+  const config = createConfig(token);
+  const promise = axios.get(`${BASE_URL}/get/disciplines/term/${termId}`, config);
+
+  return promise;
+}

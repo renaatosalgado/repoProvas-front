@@ -4,7 +4,6 @@ import LogoutPng from "../../assets/logoutIcon.png";
 import MainLogo from "../../assets/logo.png";
 import * as api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
