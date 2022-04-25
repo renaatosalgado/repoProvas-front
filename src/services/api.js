@@ -59,3 +59,10 @@ export function listTests(token, disciplineId) {
 
   return promise;
 }
+
+export function listTeachers(token) {
+  const config = createConfig(token);
+  const promise = axios.get(`${BASE_URL}/teachers`, config);
+
+  return promise;
+}
