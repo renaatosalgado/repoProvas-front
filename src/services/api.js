@@ -45,7 +45,20 @@ export function listTerms(token) {
 
 export function listDisciplines(token, termId) {
   const config = createConfig(token);
-  const promise = axios.get(`${BASE_URL}/get/disciplines/term/${termId}`, config);
+  const promise = axios.get(
+    `${BASE_URL}/get/disciplines/term/${termId}`,
+    config
+  );
+
+  return promise;
+}
+
+export function listTests(token, disciplineId) {
+  const config = createConfig(token);
+  const promise = axios.get(
+    `${BASE_URL}/get/disciplines/tests/discipline/${disciplineId}`,
+    config
+  );
 
   return promise;
 }

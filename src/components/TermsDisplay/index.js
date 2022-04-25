@@ -20,6 +20,8 @@ export default function TermsDisplay() {
   const [hasTerms, setHasTerms] = useState(false);
   const [showDisciplines, setShowDisciplines] = useState(false);
   const [disciplines, setDiscplines] = useState([]);
+  const [showTests, setShowTests] = useState(false);
+  const [tests, setTests] = useState([]);
 
   const { auth } = useAuth();
   useEffect(() => {
@@ -35,15 +37,26 @@ export default function TermsDisplay() {
     if (disciplines.length === 0) {
       api.listDisciplines(auth, termId).then((res) => {
         setDiscplines(res.data);
-        setShowDisciplines(true);
+        setShowDisciplines(!showDisciplines);
+        setShowTests(false);
       });
     } else {
       setDiscplines([]);
-      setShowDisciplines(false);
+      setShowDisciplines(!showDisciplines);
     }
   }
 
-  async function listTests(disciplineId) {}
+  async function listTests(disciplineId) {
+    if (tests.length === 0 && !showTests) {
+      api.listTests(auth, disciplineId).then((res) => {
+        setTests(res.data);
+        setShowTests(true);
+      });
+    } else {
+      setTests([]);
+      setShowTests(false);
+    }
+  }
 
   return (
     <Container>
@@ -54,15 +67,18 @@ export default function TermsDisplay() {
                 <p>{term.number}º Período</p>
                 <p>
                   {showDisciplines ? (
-                    <IoIosArrowDown size="20px" />
+                    <IoIosArrowUp size="20px" color="blue" />
                   ) : (
-                    <IoIosArrowUp size="20px" />
+                    <IoIosArrowDown size="20px" color="blue" />
                   )}
                 </p>
               </TermNumber>
               {showDisciplines
                 ? disciplines.map((discipline) => (
                     <Discipline
+                      onClick={() => {
+                        listTests(discipline.id);
+                      }}
                       showDisciplines={showDisciplines}
                       isClicked={term.id === discipline.termId}
                       key={discipline.id}
@@ -74,14 +90,32 @@ export default function TermsDisplay() {
                         </p>
                       </DisciplineName>
                       <TestsList>
-                        <Test>
-                          <TestCategory>P1</TestCategory>
-                          <TestName>2022.01 - Client (Dina)</TestName>
-                        </Test>
-                        <Test>
-                          <TestCategory>P2</TestCategory>
-                          <TestName>2022.03 - Prisma (Dina)</TestName>
-                        </Test>
+                        {showTests
+                          ? tests.map((test) => (
+                              <Test
+                                key={test.id}
+                                isClicked={
+                                  discipline.id ===
+                                  test.teachersDisciplines.disciplineId
+                                }
+                                showTests={showTests}
+                              >
+                                <TestCategory>
+                                  {test.categories.name}
+                                </TestCategory>
+                                <a
+                                  href={test.pfdUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <TestName>
+                                    {test.name} - (
+                                    {test.teachersDisciplines.teachers.name})
+                                  </TestName>
+                                </a>
+                              </Test>
+                            ))
+                          : ""}
                       </TestsList>
                     </Discipline>
                   ))

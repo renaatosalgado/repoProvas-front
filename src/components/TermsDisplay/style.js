@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -18,6 +19,10 @@ const Term = styled.div`
   justify-content: center;
 
   margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 50px;
+  }
 `;
 
 const TermNumber = styled.p`
@@ -38,7 +43,8 @@ const TermNumber = styled.p`
 const Discipline = styled.div`
   width: calc(100% - 25px);
 
-  display: ${(props) => (props.showDisciplines && props.isClicked ? "inherit" : "none")};
+  display: ${(props) => (props.showDisciplines && props.isClicked ? "flex" : "none")};
+  flex-direction: column;
 `;
 const DisciplineName = styled.p`
   height: 35px;
@@ -60,16 +66,22 @@ const TestsList = styled.div`
   padding-left: 16px;
 
   font-weight: 400;
+  
+  display:flex;
+  flex-direction:column;
 
-  display: none;
-`;
+  `;
 const Test = styled.div`
   width: 100%;
-
+  
   margin-top: 8px;
+
+  display: ${(props) => (props.showTests && props.isClicked ? "flex" : "none")};
+
+  flex-direction: column;
 `;
 const TestCategory = styled.p``;
-const TestName = styled.p`
+const TestName = styled.div`
   font-size: 12px;
   font-weight: 300;
 `;
