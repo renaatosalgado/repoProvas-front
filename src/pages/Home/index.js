@@ -5,6 +5,7 @@ import TermsDisplay from "../../components/TermsDisplay";
 import Swal from "sweetalert2";
 import * as api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
+import TeachersDisplay from "../../components/TeachersDisplay";
 
 export default function Home() {
   const { auth } = useAuth();
@@ -40,7 +41,8 @@ export default function Home() {
   return (
     <>
       <Header />
-      <TermsDisplay />
+      {/* <TermsDisplay /> */}
+      <TeachersDisplay />
     </>
   );
 }

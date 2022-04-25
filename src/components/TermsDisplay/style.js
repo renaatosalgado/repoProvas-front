@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -6,7 +5,7 @@ const Container = styled.div`
 
   margin: 20px auto 0 auto;
 
-  font-family: 'Poppins';
+  font-family: "Poppins";
 `;
 
 const Term = styled.div`
@@ -40,12 +39,15 @@ const TermNumber = styled.p`
 
   cursor: pointer;
 `;
+
 const Discipline = styled.div`
   width: calc(100% - 25px);
 
-  display: ${(props) => (props.showDisciplines && props.isClicked ? "flex" : "none")};
+  display: ${(props) =>
+    props.showDisciplines && props.isClicked ? "flex" : "none"};
   flex-direction: column;
 `;
+
 const DisciplineName = styled.p`
   height: 35px;
   width: 100%;
@@ -60,31 +62,35 @@ const DisciplineName = styled.p`
 
   cursor: pointer;
 `;
+
 const TestsList = styled.div`
   width: calc(100% - 25px);
 
   padding-left: 16px;
 
   font-weight: 400;
-  
-  display:flex;
-  flex-direction:column;
 
-  `;
+  display: flex;
+  flex-direction: column;
+`;
+
 const Test = styled.div`
   width: 100%;
-  
+
   margin-top: 8px;
 
   display: ${(props) => (props.showTests && props.isClicked ? "flex" : "none")};
 
   flex-direction: column;
 `;
+
 const TestCategory = styled.p``;
+
 const TestName = styled.div`
   font-size: 12px;
   font-weight: 300;
 `;
+
 const TeacherName = styled.p``;
 
 export {

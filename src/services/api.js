@@ -38,17 +38,14 @@ export function logout(token) {
 
 export function listTerms(token) {
   const config = createConfig(token);
-  const promise = axios.get(`${BASE_URL}/get/terms`, config);
+  const promise = axios.get(`${BASE_URL}/terms`, config);
 
   return promise;
 }
 
 export function listDisciplines(token, termId) {
   const config = createConfig(token);
-  const promise = axios.get(
-    `${BASE_URL}/get/disciplines/term/${termId}`,
-    config
-  );
+  const promise = axios.get(`${BASE_URL}/terms/${termId}/disciplines`, config);
 
   return promise;
 }
@@ -56,7 +53,7 @@ export function listDisciplines(token, termId) {
 export function listTests(token, disciplineId) {
   const config = createConfig(token);
   const promise = axios.get(
-    `${BASE_URL}/get/disciplines/tests/discipline/${disciplineId}`,
+    `${BASE_URL}/terms/disciplines/${disciplineId}/tests`,
     config
   );
 

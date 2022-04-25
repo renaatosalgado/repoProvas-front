@@ -37,12 +37,12 @@ export default function TermsDisplay() {
     if (disciplines.length === 0) {
       api.listDisciplines(auth, termId).then((res) => {
         setDiscplines(res.data);
-        setShowDisciplines(!showDisciplines);
+        setShowDisciplines(true);
         setShowTests(false);
       });
     } else {
       setDiscplines([]);
-      setShowDisciplines(!showDisciplines);
+      setShowDisciplines(false);
     }
   }
 
