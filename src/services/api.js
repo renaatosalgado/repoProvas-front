@@ -66,3 +66,13 @@ export function listTeachers(token) {
 
   return promise;
 }
+
+export function listTeacherTestsCategories(token, teacherId) {
+  const config = createConfig(token);
+  const promise = axios.get(
+    `${BASE_URL}/teachers/${teacherId}/tests/categories`,
+    config
+  );
+
+  return promise;
+}

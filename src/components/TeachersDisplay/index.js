@@ -15,6 +15,8 @@ import useAuth from "../../hooks/useAuth";
 export default function TeachersDisplay() {
   const [teachers, setTeachers] = useState([]);
   const [hasTeachers, setHasTeachers] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [hasCategories, setHasCategories] = useState(false);
 
   const { auth } = useAuth();
 
@@ -27,26 +29,47 @@ export default function TeachersDisplay() {
     //eslint-disable-next-line
   }, []);
 
+  async function listTeacherTestsCategories(teacherId) {
+    if (categories.length === 0) {
+      const { data } = await api.listTeacherTestsCategories(auth, teacherId);
+
+      const rawCategories = [];
+
+      for (let i = 0; i < data.length; i++) {
+        rawCategories.push(data[i].categories.name);
+      }
+
+      const testsCategories = [...new Set(rawCategories)].sort();
+      setCategories(testsCategories);
+      setHasCategories(true);
+    } else {
+      setCategories([]);
+      setHasCategories(false);
+    }
+  }
+
   return (
     <>
       <Container>
         {hasTeachers
           ? teachers.map((teacher) => (
               <Teacher>
-                <TeacherName>{teacher.name}</TeacherName>
-                <Category>
-                  <CategoryName>P1</CategoryName>
-                  <TestsList>
-                    <Test>Introdução 1 - (Introdução)</Test>
-                    <Test>Solos 1 - (Solos)</Test>
-                  </TestsList>
-                </Category>
-                <Category>
-                  <CategoryName>P2</CategoryName>
-                  <TestsList>
-                    <Test>Introdução 2 - (Introdução)</Test>
-                  </TestsList>
-                </Category>
+                <TeacherName
+                  onClick={() => listTeacherTestsCategories(teacher.id)}
+                >
+                  {teacher.name}
+                </TeacherName>
+                {hasCategories
+                  ? categories.map((category) => (
+                      <Category key={category}>
+                        <CategoryName>{category}</CategoryName>
+                        <TestsList>
+                          <Test>Introdução 1 - (Introdução)</Test>
+                          <Test>Solos 1 - (Solos)</Test>
+                        </TestsList>
+                      </Category>
+                    ))
+                  : ""}
               </Teacher>
             ))
           : "Nada cadastrado no sistema."}
